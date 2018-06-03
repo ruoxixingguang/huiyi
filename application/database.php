@@ -13,15 +13,15 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => 'https://aze92uwq.qcloud.la',
+    'hostname'        => 'w.rdc.sae.sina.com.cn',
     // 数据库名
-    'database'        => 'huiyi',
+    'database'        => 'app_huiyix',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'j5m112kk5x',
     // 密码
-    'password'        => '077114zsp',
+    'password'        => 'kk23hw54lwj04mh0lw3j01z45m221535k1xmjx0k',
     // 端口
-    'hostport'        => '',
+    'hostport'        => '3306',
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数

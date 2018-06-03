@@ -1,6 +1,6 @@
 <?php
 namespace app\api\controller;
-
+use \app\common\Helper\curlQuestServerHelper;
 use \think\Db;
 use \think\Validate;
 use \think\Loader;
@@ -192,9 +192,9 @@ class User
             return JSON(["code"=>"10025","msg"=>"fail"]);
         }
     }
-    public function camera(){
-      return $this->fetch("camera");
-    }
+    // public function camera(){
+    //   return $this->fetch("camera");
+    // }
     public function pictureToBase64(){
       $uphoto=request()->file("uphoto");
       $info = $uphoto->move(ROOT_PATH . 'public' . DS . 'upload');
@@ -203,8 +203,20 @@ class User
       $gambar = fread($fp,filesize($data));
       fclose($fp);
       $base64 = chunk_split(base64_encode($gambar));
-
       return JSON(["base64"=>$base64]);
+    }
+    public function eyeKeyCurl(){
+      $urlInfo=input("");
+      $url=urlInfo["url"];
+      unset(urlInfo["url"]);
+      if($urlInfo["file"]){
+        $flie=request()->file("flie");
+        $info = $uphoto->move(ROOT_PATH . 'public' . DS . 'upload');
+        $data = ROOT_PATH . 'public' .DS . 'upload' . DS . $info->getSaveName();
+        $urlInfo["file"]="@"+$data;
+        return curlQuestServerHelper::curlQuestData($url,$urlnfo);
+    }
+    return curlQuestServerHelper::curlQuestData($url,$urlnfo);
     }
     public function uploadPicture()
     {
@@ -219,7 +231,7 @@ class User
     $name=time().'.png';
     $Pictureurl=$url.DS.$name;
     $a=file_put_contents($Pictureurl, $img);
-    $url='http://123.207.120.57/huiyi/'.'public'.DS."upload".DS.$name;
+    $url='https://huiyix.applinzi.com'.DS.'public'.DS."upload".DS.$name;
     if($uid){
       $res=Db::table("user")->where("uid", $uid)->update(["uphoto"=>$url]);
     }else{
