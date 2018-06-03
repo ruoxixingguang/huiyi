@@ -207,8 +207,8 @@ class User
     }
     public function eyeKeyCurl(){
       $urlInfo=input("");
-      $url=urlInfo["url"];
-      unset(urlInfo["url"]);
+      $url=$urlInfo["url"];
+      unset($urlInfo["url"]);
       if($urlInfo["file"]){
         $flie=request()->file("flie");
         $info = $uphoto->move(ROOT_PATH . 'public' . DS . 'upload');
