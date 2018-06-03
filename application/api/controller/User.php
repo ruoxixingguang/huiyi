@@ -209,7 +209,7 @@ class User
       $urlInfo=input("");
       $url=$urlInfo["url"];
       unset($urlInfo["url"]);
-      if($urlInfo["file"]){
+      if(isset($urlInfo["File"])){
         $flie=request()->file("flie");
         $info = $uphoto->move(ROOT_PATH . 'public' . DS . 'upload');
         $data = ROOT_PATH . 'public' .DS . 'upload' . DS . $info->getSaveName();
