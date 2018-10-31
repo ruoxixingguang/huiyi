@@ -1,6 +1,9 @@
 #include<stdio.h>
 #include<pthread.h>
 #include<semaphore.h>
+#include<time.h>
+#include<stdlib.h>
+#define bool int
 sem_t empty,full;
 pthread_mutex_t mutex;
 int in = 0;
@@ -45,6 +48,7 @@ int deletes(int next,int buffer[])
 }
 int produce()
 {
+	srand((unsigned int)time(NULL));
 	 int i = rand()%9+1;//from 1 to 9 rand()%(e-s+1)+s;
 	 
 	 return i;
